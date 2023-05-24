@@ -7,24 +7,24 @@
  */
 int myerratoi(char *s)
 {
-  int i = 0;
-  unsigned long int myresult = 0;
+	int i = 0;
+	unsigned long int myresult = 0;
 
-  if (*s == '+')
-    s++;
-  for (i = 0; s[i] != '\0'; i++)
-    {
-      if (s[i] >= '0' && s[i] <= '9')
+	if (*s == '+')
+		s++;
+	for (i = 0; s[i] != '\0'; i++)
 	{
-	  myresult *= 10;
-	  myresult += (s[i] - '0');
-	  if (myresult > INT_MAX)
-	    return (-1);
-	}
-      else
+	if (s[i] >= '0' && s[i] <= '9')
+	{
+	myresult *= 10;
+	myresult += (s[i] - '0');
+	if (myresult > INT_MAX)
 	return (-1);
-    }
-  return (myresult);
+	}
+	else
+	return (-1);
+	}
+	return (myresult);
 }
 /**
  * myprinterror - prints an error message
@@ -34,13 +34,13 @@ int myerratoi(char *s)
  */
 void myprinterror(ayoinfo_t *ayoinfo, char *estr)
 {
-  myputs(ayoinfo->fname);
-  myputs(": ");
-  print_dec(ayoinfo->line_count, STDERR_FILENO);
-  myputs(": ");
-  myputs(ayoinfo->argv[0]);
-  myputs(": ");
-  myputs(estr);
+	myputs(ayoinfo->fname);
+	myputs(": ");
+	print_dec(ayoinfo->line_count, STDERR_FILENO);
+	myputs(": ");
+	myputs(ayoinfo->argv[0]);
+	myputs(": ");
+	myputs(estr);
 }
 /**
  * print_dec - function prints a decimal (integer) number (base 10)
@@ -50,33 +50,33 @@ void myprinterror(ayoinfo_t *ayoinfo, char *estr)
  */
 int print_dec(int input, int fd)
 {
-  int (*___putchar)(char) = __putchar;
-  int i, count = 0;
-  unsigned int cdcd, current;
+	int (*___putchar)(char) = __putchar;
+	int i, count = 0;
+	unsigned int cdcd, current;
 
-  if (fd == STDERR_FILENO)
-    ___putchar = myputchar;
-  if (input < 0)
-    {
-      cdcd = -input;
-      ___putchar('-');
-      count++;
-    }
-  else
-    cdcd = input;
-  current = cdcd;
-  for (i = 1000000000; i > 1; i /= 10)
-    {
-      if (cdcd / i)
+	if (fd == STDERR_FILENO)
+	___putchar = myputchar;
+	if (input < 0)
 	{
-	  ___putchar('0' + current / i);
-	  count++;
+	cdcd = -input;
+	___putchar('-');
+	count++;
 	}
-      current %= i;
-    }
-  ___putchar('0' + current);
-  count++;
-  return (count);
+	else
+	cdcd = input;
+	current = cdcd;
+	for (i = 1000000000; i > 1; i /= 10)
+	{
+	if (cdcd / i)
+	{
+	___putchar('0' + current / i);
+	count++;
+	}
+	current %= i;
+	}
+	___putchar('0' + current);
+	count++;
+	return (count);
 }
 /**
  * c_number - converter function, a clone of itoa
@@ -87,27 +87,28 @@ int print_dec(int input, int fd)
  */
 char *c_number(long int num, int base, int myflags)
 {
-  static char *array;
-  static char buffer[50];
-  char mysign = 0;
-  char *ptr;
-  unsigned long n = num;
+	static char *array;
+	static char buffer[50];
+	char mysign = 0;
+	char *ptr;
+	unsigned long n = num;
 
-  if (!(myflags & C_UNSIGNED) && num < 0)
-    {
-      n = -num;
-      mysign = '-';
-    }
-  array = myflags & C_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
-  ptr = &buffer[49];
-  *ptr = '\0';
-  do {
-    *--ptr = array[n % base];
-    n /= base;
-  } while (n != 0);
-  if (mysign)
-    *--ptr = mysign;
-  return (ptr);
+	if (!(myflags & C_UNSIGNED) && num < 0)
+	{
+	n = -num;
+	mysign = '-';
+	}
+	array = myflags & C_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	ptr = &buffer[49];
+	*ptr = '\0';
+	do {
+	*--ptr = array[n % base];
+	n /= base;
+	}
+	while (n != 0)
+	if (myign)
+	*--ptr = mysign;
+	return (ptr);
 }
 /**
  * c_comments - function replaces first instance of '#' with '\0'
@@ -116,12 +117,12 @@ char *c_number(long int num, int base, int myflags)
  */
 void c_comments(char *buf)
 {
-  int i;
+	int i;
 
-  for (i = 0; buf[i] != '\0'; i++)
-    if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
-      {
+	for (i = 0; buf[i] != '\0'; i++)
+	if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	{
 	buf[i] = '\0';
 	break;
-      }
+	}
 }

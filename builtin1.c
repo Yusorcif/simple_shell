@@ -1,24 +1,24 @@
 #include "shell.h"
 #include <string.h>
 /**
- * yushistory - this displays the history list,one command by line, preceded
+ * ayohistory - this displays the history list,one command by line, preceded
  * with line numbers, starting at 0.
- * @yusinfo: structure containing potential arguments. Used to maintain
+ * @ayoinfo: structure containing potential arguments. Used to maintain
  * constant function prototype
  * Return: Always 0
  */
-int yushistory(yusinfo_t *yusinfo)
+int ayohistory(ayoinfo_t *ayoinfo)
 {
-	myprintlist(yusinfo->history);
+	myprintlist(ayoinfo->history);
 	return (0);
 }
 /**
  * alias_to_string - set alias to string
- * @yusinfo: parameter struct
+ * @ayoinfo: parameter struct
  * @str: the string alias
  * Return: 0 on success, 1 on error
  */
-int alias_to_string(yusinfo_t *yusinfo, char *str)
+int alias_to_string(ayoinfo_t *ayoinfo, char *str)
 {
 	char *p, c;
 	int resss;
@@ -28,18 +28,18 @@ int alias_to_string(yusinfo_t *yusinfo, char *str)
 	return (1);
 	c = *p;
 	*p = 0;
-	resss = delnode(&(yusinfo->alias),
-	g_node(yusinfo->alias, node_start_hay(yusinfo->alias, str, -1)));
+	resss = delnode(&(ayoinfo->alias),
+	g_node(ayoinfo->alias, node_start_hay(ayosinfo->alias, str, -1)));
 	*p = c;
 	return (resss);
 }
 /**
  * a_to_string - set alias to string
- * @yusinfo: parameter struct
+ * @ayoinfo: parameter struct
  * @str: the string alias
  * Return: Always 0 on success, 1 on error
  */
-int a_to_string(yusinfo_t *yusinfo, char *str)
+int a_to_string(ayoinfo_t *ayoinfo, char *str)
 {
 	char *p;
 
@@ -47,9 +47,9 @@ int a_to_string(yusinfo_t *yusinfo, char *str)
 	if (!p)
 	return (1);
 	if (!*++p)
-	return (alias_to_string(yusinfo, str));
-	alias_to_string(yusinfo, str);
-	return (a_n_e(&(yusinfo->alias), str, 0) == NULL);
+	return (alias_to_string(ayoinfo, str));
+	alias_to_string(ayoinfo, str);
+	return (a_n_e(&(ayoinfo->alias), str, 0) == NULL);
 }
 /**
  * p_a - prints an alias string
@@ -74,19 +74,19 @@ int p_a(mylist_t *node)
 }
 /**
  * mimic_alias - mimics the alias builtin
- * @yusinfo: Structure containing potential arguments. Used to maintain
+ * @ayoinfo: Structure containing potential arguments. Used to maintain
  * constant function prototypes
  * Return: Always 0
  */
-int mimic_alias(yusinfo_t *yusinfo)
+int mimic_alias(ayoinfo_t *ayoinfo)
 {
 	int i = 0;
 	char *p = NULL;
 	mylist_t *node = NULL;
 
-	if (yusinfo->argc == 1)
+	if (ayoinfo->argc == 1)
 	{
-	node = yusinfo->alias;
+	node = ayoinfo->alias;
 	while (node)
 	{
 	p_a(node);
@@ -94,13 +94,13 @@ int mimic_alias(yusinfo_t *yusinfo)
 	}
 	return (0);
 	}
-	for (i = 1; yusinfo->argv[i]; i++)
+	for (i = 1; ayoinfo->argv[i]; i++)
 	{
-	p = cstrchr(yusinfo->argv[i], '=');
+	p = cstrchr(ayoinfo->argv[i], '=');
 	if (p)
-	a_to_string(yusinfo, ayoinfo->argv[i]);
+	a_to_string(ayoinfo, ayoinfo->argv[i]);
 	else
-	p_a(node_start_hay(yusinfo->alias, yusinfo->argv[i], '='));
+	p_a(node_start_hay(ayoinfo->alias, ayoinfo->argv[i], '='));
 	}
 	return (0);
 }

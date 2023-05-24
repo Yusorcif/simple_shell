@@ -1,15 +1,15 @@
 #include "shell.h"
 /**
  * gethis - gets the history file
- * @yusinfo: parameter struct
+ * @ayoinfo: parameter struct
  *
  * Return: allocated string containg history file
  */
-char *gethis(yusinfo_t *yusinfo)
+char *gethis(ayoinfo_t *ayoinfo)
 {
 	char *buf, *dir;
 
-	dir = yusgetenv(ayoinfo, "HOME=");
+	dir = ayogetenv(ayoinfo, "HOME=");
 	if (!dir)
 	return (NULL);
 	buf = malloc(sizeof(char) * (cstrlen(dir) + cstrlen(HIST_FILE) + 2));
@@ -24,14 +24,14 @@ char *gethis(yusinfo_t *yusinfo)
 
 /**
  * w_history - creates a file, or appends to an existing file
- * @yusinfo: the parameter struct
+ * @ayoinfo: the parameter struct
  *
  * Return: 1 on success, else -1
  */
-int w_history(yusinfo_t *yusinfo)
+int w_history(ayoinfo_t *ayoinfo)
 {
 	ssize_t fd;
-	char *filename = gethis(yusinfo);
+	char *filename = gethis(ayoinfo);
 	mylist_t *node = NULL;
 
 	if (!filename)
@@ -41,7 +41,7 @@ int w_history(yusinfo_t *yusinfo)
 	free(filename);
 	if (fd == -1)
 	return (-1);
-	for (node = yusinfo->history; node; node = node->next)
+	for (node = ayoinfo->history; node; node = node->next)
 	{
 	printstr(node->str, fd);
 	writefd('\n', fd);
@@ -53,11 +53,11 @@ int w_history(yusinfo_t *yusinfo)
 
 /**
  * rdhist - reads history from file
- * @yusinfo: the parameter struct
+ * @ayoinfo: the parameter struct
  *
  * Return: histcount on success, 0 otherwise
  */
-int rdhist(yusinfo_t *yusinfo)
+int rdhist(ayoinfo_t *ayoinfo)
 {
 	int i, last = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;
@@ -91,45 +91,45 @@ int rdhist(yusinfo_t *yusinfo)
 	last = i + 1;
 	}
 	if (last != i)
-	yus_history_list(yusinfo, buf + last, linecount++);
+	ayo_history_list(ayoinfo, buf + last, linecount++);
 	free(buf);
-	yusinfo->histcount = linecount;
-	while (yusinfo->histcount-- >= HIST_MAX)
-	delnode(&(yusinfo->history), 0);
-	renhist(yusinfo);
-	return (yusinfo->histcount);
+	ayoinfo->histcount = linecount;
+	while (ayoinfo->histcount-- >= HIST_MAX)
+	delnode(&(ayoinfo->history), 0);
+	renhist(ayoinfo);
+	return (ayoinfo->histcount);
 }
 
 /**
- * yus_history_list - adds entry to a history linked list
- * @yusinfo: Structure containing potential arguments. Used to maintain
+ * ayo_history_list - adds entry to a history linked list
+ * @ayoinfo: Structure containing potential arguments. Used to maintain
  * @buf: buffer
  * @linecount: the history linecount, histcount
  *
  * Return: Always 0
  */
-int yus_history_list(yusinfo_t *yusinfo, char *buf, int linecount)
+int ayo_history_list(ayoinfo_t *ayoinfo, char *buf, int linecount)
 {
 	mylist_t *node = NULL;
 
-	if (yusinfo->history)
-	node = yusinfo->history;
+	if (ayoinfo->history)
+	node = ayoinfo->history;
 	a_n_e(&node, buf, linecount);
 
-	if (!yusinfo->history)
-	yusinfo->history = node;
+	if (!ayoinfo->history)
+	ayoinfo->history = node;
 	return (0);
 }
 
 /**
  * renhist - renumbers the history linked list after changes
- * @yusinfo: Structure containing potential arguments. Used to maintain
+ * @ayoinfo: Structure containing potential arguments. Used to maintain
  *
  * Return: the new histcount
  */
-int renhist(yusinfo_t *yusinfo)
+int renhist(ayoinfo_t *ayoinfo)
 {
-	mylist_t *node = yusinfo->history;
+	mylist_t *node = ayoinfo->history;
 	int i = 0;
 
 	while (node)
@@ -137,5 +137,5 @@ int renhist(yusinfo_t *yusinfo)
 	node->num = i++;
 	node = node->next;
 	}
-	return (yusinfo->histcount = i);
+	return (ayoinfo->histcount = i);
 }
