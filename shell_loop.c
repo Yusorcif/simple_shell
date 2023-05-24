@@ -158,3 +158,4 @@ void fork_cmd(ayoinfo_t *ayoinfo)
 	    myprinterror(ayoinfo, "Permission denied\n");
 	}
     }
+}
