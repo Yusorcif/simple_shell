@@ -1,4 +1,4 @@
-include "shell.h"
+#include "shell.h"
 /**
  * pfree - frees a pointer and NULLs the address
  * @ptr: address of the pointer to free
@@ -7,11 +7,11 @@ include "shell.h"
  */
 int pfree(void **ptr)
 {
-	if (ptr && *ptr)
-	{
-	free(*ptr);
-	*ptr = NULL;
-	return (1);
-	}
-	return (0);
+  if (ptr && *ptr)
+    {
+      free(*ptr);
+      *ptr = NULL;
+      return (1);
+    }
+  return (0);
 }
