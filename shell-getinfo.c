@@ -1,72 +1,72 @@
 #include "shell.h"
 /**
- * clear_yusinfo - initializes yusinfo_t struct.
- * @yusinfo: struct address.
+ * clear_ayoinfo - initializes ayoinfo_t struct.
+ * @ayoinfo: struct address.
  */
-void clear_yusinfo(yusinfo_t *yusinfo)
+void clear_ayoinfo(ayoinfo_t *ayoinfo)
 {
 
-	yusinfo->arg = NULL;
-	yusinfo->argv = NULL;
-	yusinfo->path = NULL;
-	yusinfo->argc = 0;
+	ayoinfo->arg = NULL;
+	ayoinfo->argv = NULL;
+	ayoinfo->path = NULL;
+	ayoinfo->argc = 0;
 }
 
 /**
- * set_yusinfo - initializes ayoinfo_t struct
- * @yusinfo: struct address
+ * set_ayoinfo - initializes ayoinfo_t struct
+ * @ayoinfo: struct address
  * @av: argument vector
  */
-void set_yusinfo(yusinfo_t *yusinfo, char **av)
+void set_ayoinfo(ayoinfo_t *ayoinfo, char **av)
 {
 	int i = 0;
 
-	yusinfo->fname = av[0]
-	if (yusinfo->arg)
+	ayoinfo->fname = av[0]
+	if (ayoinfo->arg)
 	{
-	yusinfo->argv = str_word(yusinfo->arg, " \t");
-	if (!yusinfo->argv)
+	ayoinfo->argv = str_word(ayoinfo->arg, " \t");
+	if (!ayoinfo->argv)
 	{
-	yusinfo->argv = malloc(sizeof(char *) * 2);
-	if (yusinfo->argv)
+	ayoinfo->argv = malloc(sizeof(char *) * 2);
+	if (ayoinfo->argv)
 	{
-	yusinfo->argv[0] = cp_null(yusinfo->arg);
-	yusinfo->argv[1] = NULL;
+	ayoinfo->argv[0] = cp_null(ayoinfo->arg);
+	ayoinfo->argv[1] = NULL;
 	}
 	}
-	for (i = 0; yusinfo->argv && yusinfo->argv[i]; i++)
+	for (i = 0; ayoinfo->argv && ayoinfo->argv[i]; i++)
 	;
-	yusinfo->argc = i;
-	r_alias(yusinfo);
-	r_vars(yusinfo);
+	ayoinfo->argc = i;
+	r_alias(ayoinfo);
+	r_vars(ayoinfo);
 	}
 }
 
 /**
- * free_yusinfo - frees yusinfo_t struct fields
- * @yusinfo: struct address
+ * free_ayoinfo - frees ayoinfo_t struct fields
+ * @ayoinfo: struct address
  * @all: true if freeing all fields
  */
-void free_yusinfo(yusinfo_t *yusinfo, int all)
+void free_ayoinfo(ayoinfo_t *ayoinfo, int all)
 {
-	afree(yusinfo->argv);
-	yusinfo->argv = NULL;
-	yusinfo->path = NULL;
+	afree(ayoinfo->argv);
+	ayoinfo->argv = NULL;
+	ayoinfo->path = NULL;
 	if (all)
 	{
-	if (!yusinfo->cmd_buf)
-	free(yusinfo->arg);
-	if (yusinfo->env)
-	fr_list(&(yusinfo->env));
-	if (yusinfo->history)
-	fr_list(&(yusinfo->history));
-	if (yusinfo->alias)
-	fr_list(&(yusinfo->alias));
-	afree(yusinfo->environ);
-	yusinfo->environ = NULL;
-	pfree((void **)yusinfo->cmd_buf);
-	if (yusinfo->readmyfd > 2)
-	close(yusinfo->readmyfd);
+	if (!ayoinfo->cmd_buf)
+	free(ayoinfo->arg);
+	if (ayoinfo->env)
+	fr_list(&(ayoinfo->env));
+	if (ayoinfo->history)
+	fr_list(&(ayoinfo->history));
+	if (ayoinfo->alias)
+	fr_list(&(ayoinfo->alias));
+	afree(ayoinfo->environ);
+	ayoinfo->environ = NULL;
+	pfree((void **)ayoinfo->cmd_buf);
+	if (ayoinfo->readmyfd > 2)
+	close(ayoinfo->readmyfd);
 	__putchar(BUF_FLUSH);
 	}
 }

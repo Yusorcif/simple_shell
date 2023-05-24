@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * yusinter - returns true if shell is active
- * @yusinfo: struct address
+ * ayointer - returns true if shell is active
+ * @ayoinfo: struct address
  *
  * Return: 1 if interactive mode, 0
  */
-int yusinter(yusinfo_t *yusinfo)
+int ayointer(ayoinfo_t *ayoinfo)
 {
 	return (isatty(STDIN_FILENO) && yuso->readfd <= 2);
 }
@@ -14,13 +14,13 @@ int yusinter(yusinfo_t *yusinfo)
 /**
  * mydelim - checks if char is a delimeter
  * @c: the char to check
- * @yusdelim: the delimeter string
+ * @ayodelim: the delimeter string
  * Return: 1 if true, 0 if false
  */
-int mydelim(char c, char *yusdelim)
+int mydelim(char c, char *ayodelim)
 {
-	while (*yusdelim)
-	if (*yusdelim++ == c)
+	while (*ayodelim)
+	if (*ayodelim++ == c)
 	return (1);
 	return (0);
 }
