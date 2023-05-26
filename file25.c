@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * rdhist - to read history
- * @ayoinfo: rep parameter
+ * rdhist - to read
+ * @ayoinfo: rep
  *
- * Return: will return histcount
+ * Return: return
  */
 int rdhist(ayoinfo_t *ayoinfo)
 {
@@ -50,8 +50,8 @@ int rdhist(ayoinfo_t *ayoinfo)
 }
 
 /**
- * ayo_history_list - to add to history
- * @ayoinfo: struct created
+ * ayo_history_list - add
+ * @ayoinfo: struct
  * @buf: represents buffer
  * @linecount: count of history
  *

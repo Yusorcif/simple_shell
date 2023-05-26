@@ -1,32 +1,32 @@
 #include "shell.h"
 /**
- * gethis - gets the history file
- * @ayoinfo: parameter struct
+ * gethis - will produce hist file
+ * @ayoinfo: parameter
 *
- * Return: allocated string containg history file
+ * Return: string
  */
 char *gethis(ayoinfo_t *ayoinfo)
 {
-char *buf, *dir;
+	char *buf, *dir;
 
-dir = ayogetenv(ayoinfo, "HOME=");
-if (!dir)
-return (NULL);
-buf = malloc(sizeof(char) * (cstrlen(dir) + cstrlen(HIST_FILE) + 2));
-if (!buf)
-return (NULL);
-buf[0] = 0;
-cstrcpy(buf, dir);
-cstrcat(buf, "/");
-cstrcat(buf, HIST_FILE);
-return (buf);
+	dir = ayogetenv(ayoinfo, "HOME=");
+	if (!dir)
+		return (NULL);
+	buf = malloc(sizeof(char) * (cstrlen(dir) + cstrlen(HIST_FILE) + 2));
+	if (!buf)
+		return (NULL);
+	buf[0] = 0;
+	cstrcpy(buf, dir);
+	cstrcat(buf, "/");
+	cstrcat(buf, HIST_FILE);
+	return (buf);
 }
 
 /**
- * w_history - creates a file, or appends to an existing file
- * @ayoinfo: the parameter struct
+ * w_history - see code for details
+ * @ayoinfo: the parameter defined
  *
- * Return: 1 on success, else -1
+ * Return: 1 or -1
  */
 int w_history(ayoinfo_t *ayoinfo)
 {

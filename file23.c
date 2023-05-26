@@ -1,11 +1,11 @@
 #include "shell.h"
 /**
- * aychain - test if current char in buffer is a chain delimeter
- * @ayoinfo: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
+ * aychain - to test for buf or del
+ * @ayoinfo: the struct
+ * @buf: the def buff
+ * @p: address
  *
- * Return: 1 if chain delimeter, 0 otherwise
+ * Return: 1 or 0
  */
 int aychain(ayoinfo_t *ayoinfo, char *buf, size_t *p)
 {
@@ -23,9 +23,9 @@ int aychain(ayoinfo_t *ayoinfo, char *buf, size_t *p)
 		j++;
 		ayoinfo->cmd_buf_type = C_AND;
 	}
-	else if (buf[j] == ';') /* found end of this command */
+	else if (buf[j] == ';')
 	{
-		buf[j] = 0; /* replace semicolon with null */
+		buf[j] = 0;
 		ayoinfo->cmd_buf_type = C_CHAIN;
 	}
 	else
@@ -34,12 +34,12 @@ int aychain(ayoinfo_t *ayoinfo, char *buf, size_t *p)
 	return (1);
 }
 /**
- * ch_chain - checks we should continue chaining based on last status
- * @ayoinfo: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
- * @i: starting position in buf
- * @len: length of buf
+ * ch_chain - as defined
+ * @ayoinfo: the struct
+ * @buf: the
+ * @p: rep addres
+ * @i: beg buf position
+ * @len: length
  *
  * Return: Void
  */
@@ -66,10 +66,10 @@ void ch_chain(ayoinfo_t *ayoinfo, char *buf, size_t *p, size_t i, size_t len)
 	*p = j;
 }
 /**
- * r_alias - replaces an aliases in the tokenized string
- * @ayoinfo: the parameter struct
+ * r_alias - to replace alias
+ * @ayoinfo: the parameter defined
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: 1 or  0
  */
 int r_alias(ayoinfo_t *ayoinfo)
 {

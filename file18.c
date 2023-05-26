@@ -3,7 +3,6 @@
  * cstrcpy - created to copy str
  * @destn: the intended location
  * @src: source location
-*
  * Return: pointer to location
  */
 char *cstrcpy(char *destn, char *src)

@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * r_vars - replaces vars in the tokenized string
- * @ayoinfo: the parameter struct
+ * r_vars - to replace var
+ * @ayoinfo: the struct
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: 1 or 0
  */
 int r_vars(ayoinfo_t *ayoinfo)
 {
@@ -39,11 +39,11 @@ int r_vars(ayoinfo_t *ayoinfo)
 	return (0);
 }
 /**
- * repstr - replaces string
- * @old: address of old string
- * @new: new string
+ * repstr - replace str
+ * @old: old
+ * @new: new
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: 1 or 0
  */
 int repstr(char **old, char *new)
 {
