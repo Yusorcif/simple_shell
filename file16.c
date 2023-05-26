@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * aycmd - determines if a file is an executable command
- * @ayoinfo: the ayoinfo struct
- * @path: path to the file
+ * aycmd - to check if it's executable
+ * @ayoinfo: the struct named
+ * @path: the defined path
  *
- * Return: 1 if true, 0 otherwise
+ * Return: 1 if success, 0 failed
  */
 int aycmd(ayoinfo_t *ayoinfo, char *path)
 {
@@ -20,12 +20,12 @@ int aycmd(ayoinfo_t *ayoinfo, char *path)
 	return (0);
 }
 /**
- * d_chars - duplicates characters
- * @pathstr: the PATH string
- * @start: starting index
- * @stop: stopping index
+ * d_chars - it will duplicate char
+ * @pathstr: the str rep path
+ * @start: the initial index
+ * @stop: the end index
  *
- * Return: pointer to new buffer
+ * Return: points to the new buffer
  */
 char *d_chars(char *pathstr, int start, int stop)
 {
@@ -39,12 +39,12 @@ char *d_chars(char *pathstr, int start, int stop)
 	return (buf);
 }
 /**
- * f_path - finds this cmd in the PATH string
- * @ayoinfo: the ayoinfo struct
- * @pathstr: the PATH string
- * @cmd: the cmd to find
+ * f_path - to find path
+ * @ayoinfo: the struct created
+ * @pathstr: the str path
+ * @cmd: as defined
  *
- * Return: full path of cmd if found or NULL
+ * Return: full path if okay
  */
 char *f_path(ayoinfo_t *ayoinfo, char *pathstr, char *cmd)
 {

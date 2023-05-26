@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- **aymemset - fills memory with a constant byte
- *@s: the pointer to the memory area
- *@b: the byte to fill *s with
- *@n: the amount of bytes to be filled
- *Return: (s) a pointer to the memory area s
+ **aymemset - to fill mem with con
+ *@s: created to act as pointer
+ *@b: as defined
+ *@n: the number of bytes
+ *Return: returns s
  */
 char *aymemset(char *s, char b, unsigned int n)
 {
@@ -29,12 +29,12 @@ void afree(char **pp)
 	free(a);
 }
 /**
- * ayrealloc - reallocates a block of memory
- * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of previous block
- * @new_size: byte size of new block
+ * ayrealloc - will reallocate memory
+ * @ptr: to act as pointer to last allocation
+ * @old_size: old size
+ * @new_size: new size
  *
- * Return: pointer to da ol'block nameen.
+ * Return: it should
  */
 void *ayrealloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
